@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% block title %}Dashboard | Employee Management{% endblock %}
+{% block main_class %}dashboard-main{% endblock %}
+{% block content %}
+<section class="dashboard-layout container">
+    <aside class="sidebar">
+        <h3>Menu</h3>
+        <a href="{{ url_for('dashboard') }}" class="side-link active">Dashboard</a>
+        <a href="{{ url_for('add_employee') }}" class="side-link">Add Employee</a>
+        <a href="{{ url_for('view_employees') }}" class="side-link">View Employees</a>
+        <a href="{{ url_for('logout') }}" class="side-link logout-link">Logout</a>
+    </aside>
+
+    <div class="dashboard-content">
+        <div class="dashboard-top">
+            <div>
+                <span class="tag">Welcome</span>
+                <h2>{{ session.get('admin_name') }}</h2>
+                <p>Use the left-side navigation to manage employees</p>
+            </div>
+            <div class="count-card">
+                <span>Total Employees</span>
+                <strong>{{ total_employees }}</strong>
+            </div>
+        </div>
+
+        <div class="table-card">
+            <div class="table-header">
+                <h3>Recent Employees</h3>
+                <a href="{{ url_for('add_employee') }}" class="btn primary">Add Employee</a>
+            </div>
+            <table>
+                <thead>
+                    <tr><th>ID</th><th>Name</th><th>Dept</th><th>Salary</th><th>Actions</th></tr>
+                </thead>
+                <tbody>
+                    {% for emp in employees %}
+                    <tr>
+                        <td>{{ emp.eid }}</td>
+                        <td>{{ emp.ename }}</td>
+                        <td>{{ emp.edept }}</td>
+                        <td>{{ emp.esalary }}</td>
+                        <td class="action-cell">
+                            <a href="{{ url_for('employee_detail', eid=emp.eid) }}" class="mini-btn view">View</a>
+                            <a href="{{ url_for('edit_employee', eid=emp.eid) }}" class="mini-btn edit">Edit</a>
+                            <a href="{{ url_for('delete_employee', eid=emp.eid) }}" class="mini-btn delete" onclick="return confirm('Delete?')">Delete</a>
+                        </td>
+                    </tr>
+                    {% else %}
+                    <tr><td colspan="5" class="empty-cell">No employees found</td></tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+{% endblock %}

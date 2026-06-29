@@ -1,0 +1,99 @@
+{% extends 'base.html' %}
+{% block title %}Contact | Employee Management System{% endblock %}
+{% block content %}
+<section class="page-banner">
+    <div class="container">
+        <h2>Contact Us</h2>
+        <p>Have questions or need support? Get in touch with the project team.</p>
+    </div>
+</section>
+
+<section class="contact-section">
+    <div class="container two-col">
+        <div class="contact-info">
+            <div class="info-card">
+                <h3>About the Project</h3>
+                <p>This Employee Management System is a student project developed using Flask, HTML, CSS, and MySQL. It demonstrates secure authentication, CRUD operations, and file upload functionality.</p>
+            </div>
+            
+            <div class="info-card">
+                <h3>Project Details</h3>
+                <p><strong>Technology:</strong> Python Flask Framework<br>
+                <strong>Database:</strong> MySQL<br>
+                <strong>Frontend:</strong> HTML5 & CSS3<br>
+                <strong>Features:</strong> Password Hashing, Photo Upload, Search Functionality</p>
+            </div>
+            
+            <div class="info-card">
+                <h3>For Support</h3>
+                <p>If you encounter any issues while using this system:</p>
+                <ul>
+                    <li>Check if MySQL server is running</li>
+                    <li>Verify database connection in app.py</li>
+                    <li>Ensure all required packages are installed</li>
+                    <li>Check browser for JavaScript errors</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="contact-form">
+            <div class="info-card">
+                <h3>Send a Message</h3>
+                <p>Fill out the form below to contact the project team:</p>
+                
+                <form action="mailto:your-email@example.com" method="post" class="form-grid">
+                    <label>Your Name</label>
+                    <input type="text" name="name" placeholder="Enter your name" required>
+                    
+                    <label>Email Address</label>
+                    <input type="email" name="email" placeholder="Enter your email" required>
+                    
+                    <label>Subject</label>
+                    <input type="text" name="subject" placeholder="Message subject" required>
+                    
+                    <label>Message</label>
+                    <textarea name="message" placeholder="Write your message here..." rows="5" required></textarea>
+                    
+                    <button type="submit" class="btn primary full">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="info-section">
+    <div class="container">
+        <div class="info-card">
+            <h3>Tech Stack Used</h3>
+            <div class="tech-grid">
+                <div class="tech-item">
+                    <strong>🐍 Python Flask</strong>
+                    <p>Backend framework for web application</p>
+                </div>
+                <div class="tech-item">
+                    <strong>🗄️ MySQL</strong>
+                    <p>Database for storing employee and user data</p>
+                </div>
+                <div class="tech-item">
+                    <strong>🎨 HTML5 & CSS3</strong>
+                    <p>Frontend for user interface</p>
+                </div>
+                <div class="tech-item">
+                    <strong>🔐 Werkzeug</strong>
+                    <p>Password hashing for security</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="info-section">
+    <div class="container">
+        <div class="info-card" style="text-align:center;">
+            <h3>Thank You!</h3>
+            <p>Thank you for visiting our Employee Management System project. This application demonstrates modern web development practices including secure authentication, database management, and file uploads.</p>
+            <p style="margin-top:14px;">For academic purposes only. Not intended for production use.</p>
+        </div>
+    </div>
+</section>
+{% endblock %}

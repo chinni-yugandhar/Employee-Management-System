@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block title %}Home | Employee Management{% endblock %}
+{% block content %}
+<section class="hero-section">
+    <div class="container hero-grid">
+        <div>
+            <span class="tag">Admin Employee Record Portal</span>
+            <h2>Manage employee data with a clean and secure web application</h2>
+            <p>This system helps Admin/HR users register, log in, and manage employee records through a simple dashboard built with Flask and MySQL.</p>
+            <div class="hero-actions">
+                <a href="{{ url_for('register') }}" class="btn primary">Get Started</a>
+                <a href="{{ url_for('about') }}" class="btn secondary">Learn More</a>
+            </div>
+        </div>
+        <div class="hero-card">
+            <h3>Project Workflow</h3>
+            <ul>
+                <li>Admin Registration</li>
+                <li>Admin Login</li>
+                <li>Dashboard Access</li>
+                <li>Add Employee</li>
+                <li>View/Edit/Delete Employee</li>
+                <li>Logout</li>
+            </ul>
+        </div>
+    </div>
+</section>
+{% endblock %}

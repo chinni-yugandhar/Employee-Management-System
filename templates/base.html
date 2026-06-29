@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Employee Management System{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header class="top-header">
+        <div class="container navbar">
+            <a href="{{ url_for('home') }}" class="brand">
+                <div class="logo-box">EMP</div>
+                <div>
+                    <h1>Employee Management</h1>
+                    <span>Flask + MySQL Project</span>
+                </div>
+            </a>
+
+            {% if session.get('admin_id') %}
+            <nav class="top-nav">
+                <a href="{{ url_for('dashboard') }}">Dashboard</a>
+                <a href="{{ url_for('add_employee') }}">Add Employee</a>
+                <a href="{{ url_for('view_employees') }}">View Employees</a>
+                <a href="{{ url_for('logout') }}">Logout</a>
+            </nav>
+            {% else %}
+            <nav class="top-nav">
+                <a href="{{ url_for('home') }}">Home</a>
+                <a href="{{ url_for('about') }}">About</a>
+                <a href="{{ url_for('contact') }}">Contact</a>
+                <a href="{{ url_for('register') }}">Register</a>
+                <a href="{{ url_for('login') }}">Login</a>
+            </nav>
+            {% endif %}
+        </div>
+    </header>
+
+    <main class="main-area {% block main_class %}{% endblock %}">
+        <div class="container">
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    {% for category, message in messages %}
+                        <div class="alert {{ category }}">{{ message }}</div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+        </div>
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer class="footer">
+        <div class="container footer-inner">
+            <p>Employee Management System using Flask, HTML, CSS, and MySQL</p>
+            <p>© 2026 All Rights Reserved  Chinni❤️</p>
+        </div>
+    </footer>
+</body>
+</html>

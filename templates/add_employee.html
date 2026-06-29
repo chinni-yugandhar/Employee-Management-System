@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% block title %}Add Employee{% endblock %}
+{% block main_class %}dashboard-main{% endblock %}
+{% block content %}
+<section class="dashboard-layout container">
+    <aside class="sidebar">
+        <h3>Menu</h3>
+        <a href="{{ url_for('dashboard') }}" class="side-link">Dashboard</a>
+        <a href="{{ url_for('add_employee') }}" class="side-link active">Add Employee</a>
+        <a href="{{ url_for('view_employees') }}" class="side-link">View Employees</a>
+        <a href="{{ url_for('logout') }}" class="side-link logout-link">Logout</a>
+    </aside>
+
+    <div class="dashboard-content">
+        <div class="form-card">
+            <h2>Add Employee</h2>
+            <p>Fill all details. Photo will be stored in static/uploads/</p>
+            <form method="POST" enctype="multipart/form-data" class="form-grid">
+                <div style="display:grid; grid-template-columns:1fr 1fr; gap:14px;">
+                    <div>
+                        <label>Employee ID</label>
+                        <input type="number" name="eid" required>
+                    </div>
+                    <div>
+                        <label>Name</label>
+                        <input type="text" name="ename" required>
+                    </div>
+                    <div>
+                        <label>Department</label>
+                        <input type="text" name="edept" required>
+                    </div>
+                    <div>
+                        <label>Salary</label>
+                        <input type="number" name="esalary" required>
+                    </div>
+                    <div>
+                        <label>Phone</label>
+                        <input type="text" name="ephone" required>
+                    </div>
+                    <div>
+                        <label>Email</label>
+                        <input type="email" name="eemail" required>
+                    </div>
+                </div>
+                <label>Employee Photo (optional)</label>
+                <input type="file" name="employee_photo" accept="image/*">
+                <button type="submit" class="btn primary">Save Employee</button>
+            </form>
+        </div>
+    </div>
+</section>
+{% endblock %}

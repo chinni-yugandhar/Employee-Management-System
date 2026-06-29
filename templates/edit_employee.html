@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block title %}Edit Employee{% endblock %}
+{% block main_class %}dashboard-main{% endblock %}
+{% block content %}
+<section class="dashboard-layout container">
+    <aside class="sidebar">
+        <h3>Menu</h3>
+        <a href="{{ url_for('dashboard') }}" class="side-link">Dashboard</a>
+        <a href="{{ url_for('add_employee') }}" class="side-link">Add Employee</a>
+        <a href="{{ url_for('view_employees') }}" class="side-link active">View Employees</a>
+        <a href="{{ url_for('logout') }}" class="side-link logout-link">Logout</a>
+    </aside>
+
+    <div class="dashboard-content">
+        <div class="form-card">
+            <h2>Edit Employee</h2>
+            <form method="POST" enctype="multipart/form-data" class="form-grid">
+                <div style="display:grid; grid-template-columns:1fr 1fr; gap:14px;">
+                    <div><label>Name</label><input type="text" name="ename" value="{{ employee.ename }}" required></div>
+                    <div><label>Department</label><input type="text" name="edept" value="{{ employee.edept }}" required></div>
+                    <div><label>Salary</label><input type="number" name="esalary" value="{{ employee.esalary }}" required></div>
+                    <div><label>Phone</label><input type="text" name="ephone" value="{{ employee.ephone }}" required></div>
+                    <div><label>Email</label><input type="email" name="eemail" value="{{ employee.eemail }}" required></div>
+                </div>
+                <label>Update Photo (optional)</label>
+                <input type="file" name="employee_photo" accept="image/*">
+                <button type="submit" class="btn primary">Update Employee</button>
+            </form>
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% block title %}View Employees{% endblock %}
+{% block main_class %}dashboard-main{% endblock %}
+{% block content %}
+<section class="dashboard-layout container">
+    <aside class="sidebar">
+        <h3>Menu</h3>
+        <a href="{{ url_for('dashboard') }}" class="side-link">Dashboard</a>
+        <a href="{{ url_for('add_employee') }}" class="side-link">Add Employee</a>
+        <a href="{{ url_for('view_employees') }}" class="side-link active">View Employees</a>
+        <a href="{{ url_for('logout') }}" class="side-link logout-link">Logout</a>
+    </aside>
+
+    <div class="dashboard-content">
+        <div class="table-card">
+            <div class="table-header">
+                <h2>All Employees</h2>
+                <form method="GET" style="display:flex; gap:10px;">
+                    <input type="text" name="search" value="{{ search_query }}" placeholder="Search name or department">
+                    <button type="submit" class="btn primary">Search</button>
+                </form>
+            </div>
+            <table>
+                <thead>
+                    <tr><th>ID</th><th>Name</th><th>Dept</th><th>Salary</th><th>Phone</th><th>Email</th><th>Photo</th><th>Action</th></tr>
+                </thead>
+                <tbody>
+                    {% for emp in employees %}
+                    <tr>
+                        <td>{{ emp.eid }}</td>
+                        <td>{{ emp.ename }}</td>
+                        <td>{{ emp.edept }}</td>
+                        <td>{{ emp.esalary }}</td>
+                        <td>{{ emp.ephone }}</td>
+                        <td>{{ emp.eemail }}</td>
+                        <td>
+                            {% if emp.employee_photo %}
+                            <img src="{{ url_for('static', filename='uploads/' + emp.employee_photo) }}" 
+                                 style="width:40px; height:40px; border-radius:8px; object-fit:cover;">
+                            {% else %}No photo{% endif %}
+                        </td>
+                        <td class="action-cell">
+                            <a href="{{ url_for('employee_detail', eid=emp.eid) }}" class="mini-btn view">View</a>
+                            <a href="{{ url_for('edit_employee', eid=emp.eid) }}" class="mini-btn edit">Edit</a>
+                            <a href="{{ url_for('delete_employee', eid=emp.eid) }}" class="mini-btn delete" onclick="return confirm('Delete?')">Delete</a>
+                        </td>
+                    </tr>
+                    {% else %}
+                    <tr><td colspan="8" class="empty-cell">No employees found</td></tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+{% endblock %}

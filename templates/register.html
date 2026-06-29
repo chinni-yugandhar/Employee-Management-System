@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block title %}Register | Employee Management{% endblock %}
+{% block content %}
+<section class="auth-section">
+    <div class="container auth-wrap">
+        <div class="auth-card">
+            <h2>Admin Registration</h2>
+            <p>Create your admin account to access the employee management dashboard</p>
+            <form method="POST" class="form-grid">
+                <label>Username</label>
+                <input type="text" name="username"  required>
+                
+                <label>Password</label>
+                <input type="password" name="password" required>
+                
+                <label>Confirm Password</label>
+                <input type="password" name="confirm_password" required>
+                
+                <button type="submit" class="btn primary">Register</button>
+            </form>
+            <p class="text-center" style="margin-top:18px;">
+                Already registered? <a href="{{ url_for('login') }}">Login</a>
+            </p>
+        </div>
+    </div>
+</section>
+{% endblock %}

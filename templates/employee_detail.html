@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block title %}Employee Detail{% endblock %}
+{% block main_class %}dashboard-main{% endblock %}
+{% block content %}
+<section class="dashboard-layout container">
+    <aside class="sidebar">
+        <h3>Menu</h3>
+        <a href="{{ url_for('dashboard') }}" class="side-link">Dashboard</a>
+        <a href="{{ url_for('add_employee') }}" class="side-link">Add Employee</a>
+        <a href="{{ url_for('view_employees') }}" class="side-link active">View Employees</a>
+        <a href="{{ url_for('logout') }}" class="side-link logout-link">Logout</a>
+    </aside>
+
+    <div class="dashboard-content">
+        <div class="detail-card">
+            <h2>Employee Details</h2>
+            {% if employee.employee_photo %}
+            <img src="{{ url_for('static', filename='uploads/' + employee.employee_photo) }}" 
+                 style="width:150px; height:150px; border-radius:12px; object-fit:cover; margin:20px auto; display:block;">
+            {% endif %}
+            <div class="detail-grid">
+                <div><span>ID</span><strong>{{ employee.eid }}</strong></div>
+                <div><span>Name</span><strong>{{ employee.ename }}</strong></div>
+                <div><span>Department</span><strong>{{ employee.edept }}</strong></div>
+                <div><span>Salary</span><strong>{{ employee.esalary }}</strong></div>
+                <div><span>Phone</span><strong>{{ employee.ephone }}</strong></div>
+                <div><span>Email</span><strong>{{ employee.eemail }}</strong></div>
+            </div>
+            <div class="hero-actions">
+                <a href="{{ url_for('edit_employee', eid=employee.eid) }}" class="btn primary">Edit</a>
+                <a href="{{ url_for('view_employees') }}" class="btn secondary">Back</a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
